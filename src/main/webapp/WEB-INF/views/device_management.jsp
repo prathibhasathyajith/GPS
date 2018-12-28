@@ -49,7 +49,7 @@
                     </div>
 
 
-                    <a class="navbar-brand" href="#pablo">Employees</a>
+                    <a class="navbar-brand" href="#pablo">Dashboard</a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
