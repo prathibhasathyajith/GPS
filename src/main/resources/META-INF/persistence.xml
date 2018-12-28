@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.epic.econnect_eANC-Monitor_war_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.gayan.app.entity.AtmStateTypes</class>
+    <class>com.gayan.app.entity.AtmSystemAlerts</class>
+    <class>com.gayan.app.entity.AtmStates</class>
+    <class>com.gayan.app.entity.AtmNoteType</class>
+    <class>com.gayan.app.entity.AtmFit</class>
+    <class>com.gayan.app.entity.AtmStatus</class>
+    <class>com.gayan.app.entity.AtmUserType</class>
+    <class>com.gayan.app.entity.AtmResponseCode</class>
+    <class>com.gayan.app.entity.AtmUserProfile</class>
+    <class>com.gayan.app.entity.AtmVersionInfor</class>
+    <class>com.gayan.app.entity.AtmLogconfig</class>
+    <class>com.gayan.app.entity.AtmScreenTemplate</class>
+    <class>com.gayan.app.entity.AtmOperationsAlert</class>
+    <class>com.gayan.app.entity.AtmOperationCode</class>
+    <class>com.gayan.app.entity.AtmLogType</class>
+    <class>com.gayan.app.entity.AtmMaintenanceSupportUser</class>
+    <class>com.gayan.app.entity.AtmStatusDescriptor</class>
+    <class>com.gayan.app.entity.AtmTransactionType</class>
+    <class>com.gayan.app.entity.AtmTransactionHistory</class>
+    <class>com.gayan.app.entity.AtmScreenInputMethods</class>
+    <class>com.gayan.app.entity.AtmProtocolType</class>
+    <class>com.gayan.app.entity.AtmUser</class>
+    <class>com.gayan.app.entity.AtmDownloadProfile</class>
+    <class>com.gayan.app.entity.AtmScreen</class>
+    <class>com.gayan.app.entity.AtmUserprofilePage</class>
+    <class>com.gayan.app.entity.AtmFunctionIdentifier</class>
+    <class>com.gayan.app.entity.AtmMessageType</class>
+    <class>com.gayan.app.entity.AtmSystemPage</class>
+    <class>com.gayan.app.entity.AtmSystemModule</class>
+    <class>com.gayan.app.entity.AtmReceiptTemplate</class>
+    <class>com.gayan.app.entity.AtmProtocolVersions</class>
+    <class>com.gayan.app.entity.AtmLogLevel</class>
+    <class>com.gayan.app.entity.AtmOpcode</class>
+    <class>com.gayan.app.entity.AtmMaintenanceStatus</class>
+    <class>com.gayan.app.entity.AtmServerConfiguration</class>
+    <class>com.gayan.app.entity.AtmStateInputMethod</class>
+    <class>com.gayan.app.entity.AtmOperationCategory</class>
+    <class>com.gayan.app.entity.AtmDeviceType</class>
+    <class>com.gayan.app.entity.AtmTransaction</class>
+    <class>com.gayan.app.entity.AtmMaintenance</class>
+    <class>com.gayan.app.entity.AtmAudit</class>
+    <class>com.gayan.app.entity.AtmCountry</class>
+    <class>com.gayan.app.entity.AtmPrinterFlag</class>
+    <class>com.gayan.app.entity.AtmType</class>
+    <class>com.gayan.app.entity.AtmTerminalCassette</class>
+    <class>com.gayan.app.entity.AtmTerminalAlerts</class>
+    <class>com.gayan.app.entity.AtmTerminal</class>
+    <class>com.gayan.app.entity.AtmCardReadCondition</class>
+    <class>com.gayan.app.entity.AtmScreenData</class>
+    <class>com.gayan.app.entity.AtmTerminalCassetteProfile</class>
+    <class>com.gayan.app.entity.AtmTerminalMonitor</class>
+    <class>com.gayan.app.entity.AtmMaintenanceNatureType</class>
+    <class>com.gayan.app.entity.AtmOperation</class>
+    <class>com.gayan.app.entity.AtmPasswordPolicy</class>
+    <class>com.gayan.app.entity.AtmLastTxnStatus</class>
+    <class>com.gayan.app.entity.AtmCassette</class>
+    <class>com.gayan.app.entity.AtmRiskLevel</class>
+    <class>com.gayan.app.entity.AtmTerminalGroup</class>
+    <class>com.gayan.app.entity.AtmCurrencyType</class>
+    <class>com.gayan.app.entity.AtmTerminalProfile</class>
+    <class>com.gayan.app.entity.AtmScreenTextColor</class>
+    <class>com.gayan.app.entity.AtmAccountType</class>
+    <class>com.gayan.app.entity.AtmCardReturnStatus</class>
+    <class>com.gayan.app.entity.AtmReceiptPrintStatus</class>
+    <class>com.gayan.app.entity.AtmOwnerStatus</class>
+    <class>com.gayan.app.entity.AtmDistrict</class>
+    <class>com.gayan.app.entity.Building</class>
+    <class>com.gayan.app.entity.UserType</class>
+    <class>com.gayan.app.entity.UserRole</class>
+    <class>com.gayan.app.entity.Device</class>
+    <class>com.gayan.app.entity.UserCategory</class>
+    <class>com.gayan.app.entity.Status</class>
+    <class>com.gayan.app.entity.Users</class>
+    <class>com.gayan.app.entity.DeviceLocation</class>
+    <class>com.gayan.app.entity.DeviceLocationHistory</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@192.168.1.93:1521:orcl"/>
+      <property name="javax.persistence.jdbc.user" value="ESV_TEST"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.password" value="password"/>
+    </properties>
+  </persistence-unit>
+</persistence>
