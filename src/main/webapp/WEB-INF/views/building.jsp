@@ -123,7 +123,7 @@
                                         <div class="form-group">
                                             <%--<label >Select Building</label>--%>
                                             <select id="building_select" class="form-control" name="building">
-                                                <option value="" selected="">Select Building</option>
+                                                <option value="" selected="">Select Place</option>
                                                 <%--<option value="1">Active</option>--%>
                                                 <%--<option value="2">Inactive</option>--%>
                                             </select>
