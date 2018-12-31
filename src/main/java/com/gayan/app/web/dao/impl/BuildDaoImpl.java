@@ -1,18 +1,26 @@
 package com.gayan.app.web.dao.impl;
 
 import com.gayan.app.entity.Building;
+import com.gayan.app.entity.Device;
 import com.gayan.app.entity.Status;
+import com.gayan.app.entity.Users;
 import com.gayan.app.web.dao.BuildDao;
 import com.gayan.app.web.dto.*;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -22,6 +30,7 @@ import java.util.Iterator;
 public class BuildDaoImpl implements BuildDao {
     @Autowired
     private SessionFactory sessionFactory;
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     public WebLocationBean getListOfLocations() throws Exception {
         Session session = sessionFactory.getCurrentSession();
@@ -104,5 +113,114 @@ public class BuildDaoImpl implements BuildDao {
             arrayList.add(dataBean);
         }
         return arrayList;
+    }
+
+    public ArrayList<String[]> getBuildingList(String start, String length, String search_value, boolean device_id, boolean name, boolean location, boolean auth_admin) throws Exception {
+        Session session = sessionFactory.getCurrentSession();
+
+        Criteria alias = session.createCriteria(Building.class, "building")
+                .createAlias("building.statusId", "statusId")
+                .createAlias("building.regUserId", "regUserId");
+
+        Iterator iterator = alias.setFirstResult(Integer.parseInt(start))
+                .setMaxResults(Integer.parseInt(length))
+                .list()
+                .iterator();
+
+        ArrayList<String[]> buildingDatas = new ArrayList<String[]>();
+
+        while (iterator.hasNext()) {
+            Building building = (Building) iterator.next();
+
+            buildingDatas.add(new String[]{
+                    Integer.toString(building.getBuildingId()),
+                    building.getBuildingName(),
+                    building.getLocation(),
+                    building.getLatitude(),
+                    building.getLongitude(),
+                    building.getOwnerRadius(),
+                    building.getRegUserId().getUserName(),
+                    building.getStatusId().getStatus(),
+                    building.getLastUpdatedDateTime() == null ? "--" : format.format(building.getLastUpdatedDateTime()),
+                    ""
+            });
+        }
+
+        return buildingDatas;
+    }
+
+    public int getBuildingCount(String search_value, boolean device_id, boolean name, boolean location, boolean auth_admin) throws Exception {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria alias = session.createCriteria(Building.class, "building")
+                .createAlias("building.statusId", "statusId")
+                .createAlias("building.regUserId", "regUserId");
+
+        Object o = alias.setProjection(Projections.projectionList().add(Projections.rowCount()))
+                .uniqueResult();
+        System.out.println(o);
+        return Integer.parseInt(o.toString());
+    }
+
+    public WebResponsBean addBuilding(BuildingAddBean buildingAddBean) throws Exception {
+
+        Session session = sessionFactory.getCurrentSession();
+
+        WebResponsBean bean = new WebResponsBean();
+        if (buildingAddBean != null) {
+            Building building = new Building();
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+
+            Users user = (Users) session.get(Users.class, Integer.parseInt(buildingAddBean.getUser()));
+            building.setRegUserId(user);
+
+            Status status = (Status) session.get(Status.class, Integer.parseInt(buildingAddBean.getStatus()));
+            building.setStatusId(status);
+
+            building.setBuildingName(buildingAddBean.getBuildingName());
+            building.setLocation(buildingAddBean.getLocation());
+            building.setLatitude(buildingAddBean.getLatitude());
+            building.setLongitude(buildingAddBean.getLongitude());
+            building.setOwnerRadius(buildingAddBean.getRadius());
+            building.setLastUpdatedDateTime(date);
+            building.setPlace_id("web");
+
+            session.save(building);
+            bean.setCode(HttpStatus.OK.value());
+            bean.setMessage("Building added.!");
+        } else {
+            System.out.println("invalid");
+            bean.setCode(HttpStatus.NOT_FOUND.value());
+            bean.setMessage("Invalid details..!!");
+        }
+
+
+
+        return bean;
+    }
+
+    public WebResponsBean delete(String building_id) throws Exception {
+
+        Session session = sessionFactory.getCurrentSession();
+        Object buildingId = session.createCriteria(Building.class)
+                .add(Restrictions.eq("buildingId", Integer.parseInt(building_id)))
+                .uniqueResult();
+
+        WebResponsBean bean = new WebResponsBean();
+        if (buildingId != null) {
+            Building building = (Building) buildingId;
+
+            session.delete(building);
+            bean.setCode(HttpStatus.OK.value());
+            bean.setMessage("Building Deleted.!");
+        } else {
+            System.out.println("invalid Building id");
+            bean.setCode(HttpStatus.NOT_FOUND.value());
+            bean.setMessage("Invalid Building Id.!");
+        }
+
+
+        return bean;
     }
 }

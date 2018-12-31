@@ -2,9 +2,7 @@ package com.gayan.app.web.service.impl;
 
 import com.gayan.app.entity.Building;
 import com.gayan.app.web.dao.BuildDao;
-import com.gayan.app.web.dto.BuildingDataBean;
-import com.gayan.app.web.dto.StatusDataBean;
-import com.gayan.app.web.dto.WebLocationBean;
+import com.gayan.app.web.dto.*;
 import com.gayan.app.web.service.BuilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,4 +34,26 @@ public class BuilServiceImpl implements BuilService {
     public ArrayList<StatusDataBean> getStatusListDropDown() throws Exception {
         return buildDao.getStatusListDropDown();
     }
+
+    @Transactional
+    public ArrayList<String[]> getBuildingList(String start, String length, String search_value, boolean device_id, boolean name, boolean location, boolean auth_admin) throws Exception {
+        return buildDao.getBuildingList(start, length, search_value, device_id, name, location, auth_admin);
+    }
+
+    @Transactional
+    public int getBuildingCount(String search_value, boolean device_id, boolean name, boolean location, boolean auth_admin) throws Exception {
+        return buildDao.getBuildingCount(search_value, device_id, name, location, auth_admin);
+    }
+
+    @Transactional
+    public WebResponsBean delete(String building_id) throws Exception {
+        return buildDao.delete(building_id);
+    }
+
+    @Transactional
+    public WebResponsBean addBuilding(BuildingAddBean buildingAddBean) throws Exception {
+        return buildDao.addBuilding(buildingAddBean);
+    }
+
+
 }

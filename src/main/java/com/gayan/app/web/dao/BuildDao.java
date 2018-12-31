@@ -1,8 +1,6 @@
 package com.gayan.app.web.dao;
 
-import com.gayan.app.web.dto.BuildingDataBean;
-import com.gayan.app.web.dto.StatusDataBean;
-import com.gayan.app.web.dto.WebLocationBean;
+import com.gayan.app.web.dto.*;
 
 import java.util.ArrayList;
 
@@ -15,4 +13,12 @@ public interface BuildDao {
     public ArrayList<BuildingDataBean> getBuildingListDropDown()throws Exception;
 
     public ArrayList<StatusDataBean> getStatusListDropDown()throws Exception;
+
+    public ArrayList<String[]> getBuildingList(String start, String length, String search_value, boolean device_id, boolean name, boolean location, boolean auth_admin) throws Exception;
+
+    public int getBuildingCount(String search_value, boolean device_id, boolean name, boolean location, boolean auth_admin) throws Exception;
+
+    public WebResponsBean delete(String building_id) throws Exception;
+
+    public WebResponsBean addBuilding(BuildingAddBean buildingAddBean) throws Exception;
 }

@@ -270,7 +270,7 @@
 
             <li class="nav-item ">
                 <a class="nav-link" href="/building-management">
-                    <i class="material-icons">person</i>
+                    <i class="material-icons">location_city</i>
                     <p> Building </p>
                 </a>
             </li>
@@ -283,7 +283,7 @@
             </li>
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#tablesExamples1" aria-expanded="true">
-                    <i class="material-icons">apps</i>
+                    <i class="material-icons">assignment</i>
                     <p> Reports
                         <b class="caret"></b>
                     </p>

@@ -18,9 +18,8 @@
             font-size: 12px;
         }
 
-        .btn-group>.btn-group>.btn,
-        .btn-group>.btn:not(.dropdown-toggle)
-        {
+        .btn-group > .btn-group > .btn,
+        .btn-group > .btn:not(.dropdown-toggle) {
             margin: 5px;
         }
     </style>
@@ -73,7 +72,7 @@
                 <%--=================================--%>
 
                 <div class="col-md-12 ml-auto mr-auto">
-                    <form id="device-validation-form"
+                    <form id="building-validation-form"
                           method="POST" novalidate="novalidate" action="#">
                         <div class="card ">
                             <div class="card-header card-header-info card-header-icon">
@@ -87,28 +86,43 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
-                                            <label for="deviceName" class="bmd-label-floating"> Device Name *</label>
-                                            <input type="text" class="form-control" id="deviceName" name="deviceName"
+                                            <label for="buildingName" class="bmd-label-floating"> Building Name
+                                                *</label>
+                                            <input type="text" class="form-control" id="buildingName"
+                                                   name="buildingName"
                                                    required="true" aria-required="true">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
-                                            <label for="mobile" class="bmd-label-floating"> Mobile *</label>
-                                            <input type="text" class="form-control" name="mobile"
-                                                   id="mobile" required="true" aria-required="true">
+                                            <label for="location" class="bmd-label-floating"> Location *</label>
+                                            <input type="text" class="form-control" name="location"
+                                                   id="location" required="true" aria-required="true">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
-                                            <label for="email" class="bmd-label-floating"> Email Address *</label>
-                                            <input type="email" class="form-control" id="email" name="email"
+                                            <label for="latitude" class="bmd-label-floating">Latitude *</label>
+                                            <input type="text" class="form-control" id="latitude" name="latitude"
                                                    required="true" aria-required="true">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-
+                                    <div class="col-md-4">
+                                        <div class="form-group bmd-form-group">
+                                            <label for="longitude" class="bmd-label-floating">Longitude *</label>
+                                            <input type="text" class="form-control" id="longitude" name="longitude"
+                                                   required="true" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group bmd-form-group">
+                                            <label for="radius" class="bmd-label-floating"> Radius *</label>
+                                            <input type="text" class="form-control" name="radius"
+                                                   id="radius" required="true" aria-required="true">
+                                        </div>
+                                    </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <%--<label for="user_select">Select User</label>--%>
@@ -119,22 +133,21 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <%--<label >Select Building</label>--%>
-                                            <select id="building_select" class="form-control" name="building">
-                                                <option value="" selected="">Select Place</option>
-                                                <%--<option value="1">Active</option>--%>
-                                                <%--<option value="2">Inactive</option>--%>
-                                            </select>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <%--<label for="status_select">Select Status</label>--%>
                                             <select id="status_select" class="form-control" name="status">
                                                 <option value="" selected="">Select Status</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-info" onclick="openMap()">
+                                                <i class="material-icons">place</i> Map
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -151,14 +164,7 @@
                     </form>
                 </div>
 
-
-
                 <%--==================--%>
-
-
-
-
-
 
                 <div class="row">
                     <div class="col-md-12">
@@ -178,16 +184,15 @@
                                            cellspacing="0" width="100%" style="width:100%">
                                         <thead>
                                         <tr>
-                                            <th style="font-weight: bold;font-size: 14px;">Employee Id</th>
-                                            <th style="font-weight: bold;font-size: 14px;">Name</th>
+                                            <th style="font-weight: bold;font-size: 14px;">Building Id</th>
                                             <th style="font-weight: bold;font-size: 14px;">Building Name</th>
-                                            <th style="font-weight: bold;font-size: 14px;">Last Seen time</th>
-                                            <th style="font-weight: bold;font-size: 14px;">Last Seen Location</th>
-                                            <th style="font-weight: bold;font-size: 14px;">Address</th>
-                                            <th style="font-weight: bold;font-size: 14px;">Registered admin</th>
-                                            <th style="font-weight: bold;font-size: 14px;">Battery level</th>
+                                            <th style="font-weight: bold;font-size: 14px;">Location</th>
+                                            <th style="font-weight: bold;font-size: 14px;">Latitude</th>
+                                            <th style="font-weight: bold;font-size: 14px;">Longitude</th>
+                                            <th style="font-weight: bold;font-size: 14px;">Radius</th>
+                                            <th style="font-weight: bold;font-size: 14px;">User</th>
                                             <th style="font-weight: bold;font-size: 14px;">Status</th>
-                                            <%--<th style="font-weight: bold;font-size: 14px;">Geo-Fence</th>--%>
+                                            <th style="font-weight: bold;font-size: 14px;">Last Updated Time</th>
                                             <th style="font-weight: bold;font-size: 14px;">Action</th>
                                         </tr>
                                         </thead>
@@ -212,9 +217,35 @@
 
     </div>
 
+    <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-notice">
+            <div class="modal-content" style="width: 800px;">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">GeoFence</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="mapGeofence" style=" width: 100%;height: 400px;"></div>
+                    <div class="modal-footer justify-content-center" style="padding: 4px;">
+                        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Done!</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
 </div>
 
 <jsp:include page="inc/script_inc.jsp"></jsp:include>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvkk7wNQcIYXZ7S8XNG8cG-elq0QE2v3k&libraries=drawing&callback=initMap"
+        async
+        defer></script>
 
 <script>
 
@@ -226,20 +257,20 @@
 
     var buttonCommon = {
         exportOptions: {
-            columns: [0,1,2,3,4,5,6,7]
+            columns: [0, 1, 2, 3, 4, 5, 6, 7]
         }
     };
 
 
     $(document).ready(function () {
 
-        setFormValidation('#device-validation-form');
+        setFormValidation('#building-validation-form');
 
         table = $('#datatables').DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": "/app/web/device-list", "ajax": {
-                url: '/app/web/device-list',
+            "ajax": "/app/web/building-list", "ajax": {
+                url: '/app/web/building-list',
                 data: function (data) {
                     data.device_id = device_id1;
                     data.name = name1;
@@ -249,20 +280,11 @@
             },
             "responsive": true,
             "createdRow": function (row, data, index) {
-                $('td', row).eq(6).html(data[6]);
-//                if(data[9] === 6){
-//                    $('td', row).eq(8).before('<button disabled onclick="trackDevice('+"'"+data[0]+"'"+')" class="btn btn-warning btn-sm">'+
-//                            '<i class="material-icons">warning</i> Track</button>');
-//                }else{
                 $('td', row).eq(9).before(
                     '<div class="btn-group">' +
-                    '<button style="margin: 2px;" onclick="trackDevice(' + "'" + data[0] + "'" + ')" class="btn btn-warning btn-sm"> Edit</button>' +
-                    '<button  style="margin: 2px;" onclick="deleteDevice(' + "'" + data[0] + "'" + ')" class="btn btn-warning btn-sm"> Delete</button>'
+                    '<button  style="margin: 2px;" onclick="deleteBuilding(' + "'" + data[0] + "'" + ')" class="btn btn-warning btn-sm"> Delete</button>'
                     + '</div>'
                 );
-//                }
-
-
             },
             "dom": 'Bfrtip',
             "buttons": {
@@ -274,33 +296,30 @@
                 },
                 "buttons": [
 
-                    $.extend( true, {}, buttonCommon, {
+                    $.extend(true, {}, buttonCommon, {
                         extend: 'copyHtml5',
                         title: 'Employee (Devices) Report'
-                    } ),
-                    $.extend( true, {}, buttonCommon, {
+                    }),
+                    $.extend(true, {}, buttonCommon, {
                         extend: 'excelHtml5',
                         title: 'Employee (Devices) Report'
-                    } ),
-                    $.extend( true, {}, buttonCommon, {
+                    }),
+                    $.extend(true, {}, buttonCommon, {
                         extend: 'csvHtml5',
                         title: 'Employee (Devices) Report'
-                    } ),
-                    $.extend( true, {}, buttonCommon, {
+                    }),
+                    $.extend(true, {}, buttonCommon, {
                         extend: 'pdfHtml5',
 //                        orientation: 'landscape',
                         pageSize: 'LEGAL'
-                    } ),
+                    }),
 
                 ]
             }
-
-
-
         });
-        setInterval( function () {
+        setInterval(function () {
             table.ajax.reload();
-        }, 100000 );
+        }, 100000);
 
         $.ajax({
             url: 'app/web/status/list/dropdown',
@@ -310,7 +329,7 @@
             processData: false,
             success: function (data) {
                 data.forEach(function (details) {
-                    $('#status_select').append( '<option value="'+details.status_id+'">' +details.status_name + '</option>' );
+                    $('#status_select').append('<option value="' + details.status_id + '">' + details.status_name + '</option>');
                 });
 
             },
@@ -327,7 +346,7 @@
             processData: false,
             success: function (data) {
                 data.forEach(function (details) {
-                    $('#user_select').append( '<option value="'+details.user_id+'">' +details.user_name + '</option>' );
+                    $('#user_select').append('<option value="' + details.user_id + '">' + details.user_name + '</option>');
                 });
 
             },
@@ -335,31 +354,10 @@
                 console.log(errorThrown);
             }
         });
-
-        $.ajax({
-            url: 'app/web/building/list/dropdown',
-            dataType: 'json',
-            type: 'get',
-            contentType: 'application/json',
-            processData: false,
-            success: function (data) {
-                data.forEach(function (details) {
-                    $('#building_select').append( '<option value="'+details.building_id+'">' +details.building_name + '</option>' );
-                });
-
-            },
-            error: function (jqXhr, textStatus, errorThrown) {
-                console.log(errorThrown);
-            }
-        });
-
 
     });
-    function trackDevice(device_id) {
-        alert(device_id);
-    }
 
-    function deleteDevice(device_id) {
+    function deleteBuilding(building_id) {
 
 
         swal({
@@ -371,9 +369,9 @@
             cancelButtonClass: 'btn btn-danger',
             confirmButtonText: 'Yes, delete it!',
             buttonsStyling: false
-        }).then(function() {
+        }).then(function () {
             $.ajax({
-                url: '/app/web/delete/device/'+device_id,
+                url: '/app/web/delete/building/' + building_id,
                 dataType: 'json',
                 type: 'POST',
                 contentType: 'application/json',
@@ -420,22 +418,23 @@
             },
             submitHandler: function () {
                 var json = {
-                    deviceName: $("#deviceName").val(),
-                    mobile: $("#mobile").val(),
-                    email: $("#email").val(),
+                    buildingName: $("#buildingName").val(),
+                    location: $("#location").val(),
+                    latitude: $("#latitude").val(),
+                    longitude: $("#longitude").val(),
+                    radius: $("#radius").val(),
                     user: $("#user_select").val(),
-                    building: $("#building_select").val(),
-                    status : $("#status_select").val()
+                    status: $("#status_select").val()
                 }
-                addDevice(json)
+                addBuilding(json);
             }
         });
     }
 
 
-    function addDevice(jsn) {
+    function addBuilding(jsn) {
         $.ajax({
-            url: '/app/web/add/device/add-new',
+            url: '/app/web/add/building/add-new',
             dataType: 'json',
             type: 'POST',
             data: JSON.stringify(jsn),
@@ -450,11 +449,12 @@
                         type: "success"
                     }).catch(swal.noop);
 
-                    $("#deviceName").val("");
-                    $("#mobile").val("");
-                    $("#email").val("");
+                    $("#buildingName").val("");
+                    $("#location").val("");
+                    $("#latitude").val("");
+                    $("#longitude").val("");
+                    $("#radius").val("");
                     $("#user_select").val("");
-                    $("#building_select").val("");
                     $("#status_select").val("");
 
                     table.ajax.reload();
@@ -472,13 +472,107 @@
             error: function (jqXhr, textStatus, errorThrown) {
                 swal({
                     title: "ERROR!",
-                    text:"Please fill all fields.!",
+                    text: "Please fill all fields.!",
                     buttonsStyling: false,
                     confirmButtonClass: "btn btn-danger"
                 }).catch(swal.noop)
             }
         });
     }
+
+    function openMap() {
+        $('#mapModal').modal('show');
+    }
+
+    var circle;
+
+    function initMap() {
+
+        var mapOptions = {
+            center: {
+                lat: 6.93,
+                lng: 79.87
+            },
+            zoom: 11
+        };
+
+
+        var map = new google.maps.Map(document.getElementById('mapGeofence'),
+            mapOptions);
+
+        var drawingManager = new google.maps.drawing.DrawingManager({
+            drawingMode: google.maps.drawing.OverlayType.CIRCLE,
+            drawingControl: true,
+            drawingControlOptions: {
+                position: google.maps.ControlPosition.TOP_CENTER,
+                drawingModes: [
+                    google.maps.drawing.OverlayType.CIRCLE
+                ]
+            },
+            circleOptions: {
+                fillColor: '#ffff00',
+                fillOpacity: 0.3,
+                strokeWeight: 1,
+                clickable: false,
+                editable: true,
+                zIndex: 1
+            }
+        });
+        drawingManager.setMap(map);
+        google.maps.event.addListener(drawingManager, 'circlecomplete', onCircleComplete);
+    }
+
+    function onCircleComplete(shape) {
+        var geocoder = new google.maps.Geocoder;
+        if (shape == null || (!(shape instanceof google.maps.Circle))) return;
+
+        if (circle != null) {
+            circle.setMap(null);
+            circle = null;
+        }
+
+        circle = shape;
+        document.getElementById('radius').value = circle.getRadius();
+        document.getElementById('latitude').value = circle.getCenter().lat();
+        document.getElementById('longitude').value = circle.getCenter().lng();
+        console.log('radius', circle.getRadius());
+        console.log('lat', circle.getCenter().lat());
+        console.log('lng', circle.getCenter().lng());
+
+        var latlng = {
+            lat: circle.getCenter().lat(),
+            lng: circle.getCenter().lng()
+        };
+
+        geocoder.geocode({
+            'location': latlng
+        }, function (results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    document.getElementById('location').value = results[0].formatted_address;
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+                window.alert('Geocoder failed due to: ' + status);
+            }
+        });
+
+        $('#location').parent().addClass("is-focused");
+        $('#radius').parent().addClass("is-focused");
+        $('#latitude').parent().addClass("is-focused");
+        $('#longitude').parent().addClass("is-focused");
+
+        swal({
+            title: "Good job!",
+            text: "Successfully selected Geofence",
+            buttonsStyling: false,
+            confirmButtonClass: "btn btn-success",
+            type: "success"
+        }).catch(swal.noop);
+
+    }
+
 </script>
 </body>
 </html>
