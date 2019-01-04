@@ -144,14 +144,14 @@
                                             <thead>
                                             <tr>
                                                 <th style="font-weight: bold;font-size: 14px;">Device Id</th>
-                                                <th style="font-weight: bold;font-size: 14px;">Device Name</th>
-                                                <th style="font-weight: bold;font-size: 14px;">Last seen time</th>
-                                                <th style="font-weight: bold;font-size: 14px;">Last seen location</th>
-                                                <th style="font-weight: bold;font-size: 14px;">Address</th>
-                                                <th style="font-weight: bold;font-size: 14px;">Company</th>
-                                                <th style="font-weight: bold;font-size: 14px;">Battery level</th>
+                                                <th style="font-weight: bold;font-size: 14px;">Name</th>
+                                                <%--<th style="font-weight: bold;font-size: 14px;">Last seen time</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 14px;">Last seen location</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 14px;">Address</th>--%>
+                                                <th style="font-weight: bold;font-size: 14px;">Geo-Fence</th>
+                                                <%--<th style="font-weight: bold;font-size: 14px;">Battery level</th>--%>
                                                 <th style="font-weight: bold;font-size: 14px;">Status</th>
-                                                <%--<th style="font-weight: bold;font-size: 14px;">risk</th>--%>
+                                                <%--&lt;%&ndash;<th style="font-weight: bold;font-size: 14px;">risk</th>&ndash;%&gt; old--%>
                                                 <th style="font-weight: bold;font-size: 14px;">Track Device</th>
                                             </tr>
                                             </thead>
@@ -286,14 +286,17 @@ var m_url = "?device_id=false&name=false&location=false&auth_admin=false";
             "responsive": true,
             "createdRow": function (row, data, index) {
 
-                if (data[9] === 6) {
-                    $('td', row).eq(8).before('<button disabled onclick="trackDevice(' + "'" + data[0] + "'" + '),getName('+"'"+data[1]+"'"+')" class="btn btn-info btn-sm">' +
-                            '<i class="material-icons">warning</i> history</button>');
-                } else {
-                    $('td', row).eq(8).before('<button onclick="trackDevice(' + "'" + data[0] + "'" + '),getName('+"'"+data[1]+"'"+')" class="btn btn-info btn-sm">' +
-                            '<i class="material-icons">warning</i> history</button>');
-                }
-                $('td', row).eq(7).html(data[7]);
+                // if (data[9] === 6) {
+                //     $('td', row).eq(5).before('<button disabled onclick="trackDevice(' + "'" + data[0] + "'" + '),getName('+"'"+data[1]+"'"+')" class="btn btn-info btn-sm">' +
+                //             '<i class="material-icons">warning</i> history</button>');
+                // } else {
+                //     $('td', row).eq(5).before('<button onclick="trackDevice(' + "'" + data[0] + "'" + '),getName('+"'"+data[1]+"'"+')" class="btn btn-info btn-sm">' +
+                //             '<i class="material-icons">warning</i> history</button>');
+                // }
+                // $('td', row).eq(4).html(data[4]);
+
+                $('td', row).eq(4).before('<button onclick="trackDevice(' + "'" + data[0] + "'" + '),getName('+"'"+data[1]+"'"+')" class="btn btn-info btn-sm">' +
+                    '<i class="material-icons">warning</i> history</button>');
 
             }
 

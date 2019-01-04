@@ -80,14 +80,14 @@
                                     <div class="card-icon">
                                         <i class="material-icons">smartphone</i>
                                     </div>
-                                    <h4 class="card-title">Add New Device</h4>
+                                    <h4 class="card-title">Add New Employee</h4>
                                 </div>
 
                                 <div class="card-body " style="padding-bottom: 0px;">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group bmd-form-group">
-                                                <label for="deviceName" class="bmd-label-floating"> Device Name *</label>
+                                                <label for="deviceName" class="bmd-label-floating"> Name *</label>
                                                 <input type="text" class="form-control" id="deviceName" name="deviceName"
                                                        required="true" aria-required="true">
                                             </div>
@@ -180,7 +180,7 @@
                                         <tr>
                                             <th style="font-weight: bold;font-size: 14px;">Employee Id</th>
                                             <th style="font-weight: bold;font-size: 14px;">Name</th>
-                                            <th style="font-weight: bold;font-size: 14px;">Building Name</th>
+                                            <th style="font-weight: bold;font-size: 14px;">Geo-Fence</th>
                                             <th style="font-weight: bold;font-size: 14px;">Last Seen time</th>
                                             <th style="font-weight: bold;font-size: 14px;">Last Seen Location</th>
                                             <th style="font-weight: bold;font-size: 14px;">Address</th>

@@ -77,7 +77,7 @@
                                         <li class="nav-item" style="width: 50%;">
                                             <a class="nav-link active show" href="#about" data-toggle="tab" role="tab"
                                                aria-selected="true">
-                                                Our Companies (Map view)
+                                                Geo-Fences
                                             </a>
                                         </li>
                                         <li class="nav-item" style="width: 50%;">

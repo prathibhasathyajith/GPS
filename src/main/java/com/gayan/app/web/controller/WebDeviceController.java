@@ -128,9 +128,9 @@ public class WebDeviceController {
 
 
             tableBean.setDraw(draw);
-            tableBean.setRecordsFiltered(registeredDeviceList_new.size());
-            tableBean.setRecordsTotal(registeredDeviceList_new.size());
-            tableBean.setData(registeredDeviceList);
+            tableBean.setRecordsFiltered(registeredDeviceList.size());
+            tableBean.setRecordsTotal(registeredDeviceList.size());
+            tableBean.setData(registeredDeviceList_new);
         } else {
 
             tableBean.setDraw(draw);

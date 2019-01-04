@@ -264,7 +264,7 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/user-management">
                     <i class="material-icons">person</i>
-                    <p> Users </p>
+                    <p> Administrators </p>
                 </a>
             </li>
 
@@ -278,7 +278,7 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/device-management">
                     <i class="material-icons">apps</i>
-                    <p> Devices </p>
+                    <p> Employees </p>
                 </a>
             </li>
             <li class="nav-item ">

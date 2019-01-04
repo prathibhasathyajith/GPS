@@ -177,15 +177,6 @@ public class DeviceDaoImpl implements DeviceDao {
     public ArrayList<String[]> getRegisteredDeviceHistory(String start, String length, String device_id) throws Exception {
         Session session = sessionFactory.getCurrentSession();
 
-//        Iterator iterator = session.createCriteria(DeviceLocationHistory.class, "device_his")
-//                .createAlias("device_his.deviceId", "deviceId")
-//                .createAlias("device_his.statusId", "statusId")
-//                .add(Restrictions.eq("deviceId.deviceIdUq", device_id))
-////                .setFirstResult(Integer.parseInt(start))
-////                .setMaxResults(Integer.parseInt(length))
-//                .addOrder(Order.desc("device_his.lastUpdatedDateTime"))
-//                .list()
-//                .iterator();
         ArrayList<String[]> deviceDatas = new ArrayList<String[]>();
         ArrayList<String[]> deviceDatas_new = new ArrayList<String[]>();
         String st = "";
@@ -289,13 +280,13 @@ public class DeviceDaoImpl implements DeviceDao {
 
             }
 
-            try {
-                ArrayList<String[]> deviceData_limit = new ArrayList<String[]>(deviceDatas.subList(Integer.parseInt(start), Integer.parseInt(start) + Integer.parseInt(length)));
-                deviceDatas_new.addAll(deviceData_limit);
-            } catch (Exception s) {
-                ArrayList<String[]> deviceData_limit = new ArrayList<String[]>(deviceDatas.subList(Integer.parseInt(start), deviceDatas.size()));
-                deviceDatas_new.addAll(deviceData_limit);
-            }
+//            try {
+//                ArrayList<String[]> deviceData_limit = new ArrayList<String[]>(deviceDatas.subList(Integer.parseInt(start), Integer.parseInt(start) + Integer.parseInt(length)));
+//                deviceDatas_new.addAll(deviceData_limit);
+//            } catch (Exception s) {
+//                ArrayList<String[]> deviceData_limit = new ArrayList<String[]>(deviceDatas.subList(Integer.parseInt(start), deviceDatas.size()));
+//                deviceDatas_new.addAll(deviceData_limit);
+//            }
         }
 
 
@@ -629,11 +620,11 @@ public class DeviceDaoImpl implements DeviceDao {
             deviceDatas.add(new String[]{
                     device.getDeviceIdUq(),
                     device.getDeviceName(),
-                    device.getLastUpdatedDateTime() == null ? "--" : format.format(device.getLastUpdatedDateTime()),
-                    "[lat : " + device.getDevice_last_lat() + " - lng : " + device.getDevice_last_lan() + "]",
-                    getAddressByGpsCoordinates(device.getDevice_last_lat(),device.getDevice_last_lan()),
+//                    device.getLastUpdatedDateTime() == null ? "--" : format.format(device.getLastUpdatedDateTime()),
+//                    "[lat : " + device.getDevice_last_lat() + " - lng : " + device.getDevice_last_lan() + "]",
+//                    getAddressByGpsCoordinates(device.getDevice_last_lat(),device.getDevice_last_lan()),
                     device.getOwnerBuildingId().getBuildingName(),
-                    device.getBattryLevel() + "",
+//                    device.getBattryLevel() + "",
                     status_formatter,
 //                    geo_fence_st,
                     "",

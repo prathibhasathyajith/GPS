@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
                 .createAlias("user.statusId", "statusId")
                 .createAlias("user.roleId", "roleId")
                 .createAlias("user.typeId", "typeId")
-                .add(Restrictions.eq("categoryId.categoryId", Integer.parseInt(user_category)))
+//                .add(Restrictions.eq("categoryId.categoryId", Integer.parseInt(user_category)))
 
                 .add(Restrictions.disjunction()
                         .add(Restrictions.like("user.name", "%" + search_value + "%"))
@@ -91,7 +91,7 @@ public class UserDaoImpl implements UserDao {
                 .createAlias("user.statusId", "statusId")
                 .createAlias("user.roleId", "roleId")
                 .createAlias("user.typeId", "typeId")
-                .add(Restrictions.eq("categoryId.categoryId", Integer.parseInt(user_category)))
+//                .add(Restrictions.eq("categoryId.categoryId", Integer.parseInt(user_category)))
 
                 .add(Restrictions.disjunction()
                         .add(Restrictions.like("user.name", "%" + search_value + "%"))

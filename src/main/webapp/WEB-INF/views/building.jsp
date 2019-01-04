@@ -32,7 +32,6 @@
 
     <jsp:include page="inc/side_bar.jsp"></jsp:include>
 
-
     <div class="main-panel">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
@@ -222,7 +221,7 @@
         <div class="modal-dialog modal-notice">
             <div class="modal-content" style="width: 800px;">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">GeoFence</h4>
+                    <h4 class="modal-title" id="myModalLabel">Geo-Fence</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         <i class="material-icons">close</i>
                     </button>

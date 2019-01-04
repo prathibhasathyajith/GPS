@@ -67,13 +67,13 @@
                     <div class="col-md-12">
                         <ul class="nav nav-pills nav-pills-warning nav-pills-icons justify-content-center"
                             role="tablist">
+                            <%--<li class="nav-item">--%>
+                                <%--<a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">--%>
+                                    <%--<i class="material-icons" style="padding: 0px">person</i> Web - Users--%>
+                                <%--</a>--%>
+                            <%--</li>--%>
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
-                                    <i class="material-icons" style="padding: 0px">person</i> Web - Users
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                                <a class="nav-link active" data-toggle="tab" href="#link2" role="tablist">
                                     <i class="material-icons" style="padding: 0px">person</i> Mobile - Users
                                 </a>
                             </li>
@@ -93,7 +93,7 @@
                                             <div class="card-icon">
                                                 <i class="material-icons">mail_outline</i>
                                             </div>
-                                            <h4 class="card-title">Register</h4>
+                                            <h4 class="card-title">Register User</h4>
                                         </div>
                                         <div class="card-body " style="padding-bottom: 0px;">
                                             <div class="row">
@@ -192,111 +192,111 @@
 
 
                         </div>
-                        <div class="tab-pane" id="link2">
-                            <div class="col-md-8 ml-auto mr-auto">
-                                <form id="mob-user-validation-form" action="#" method="POST" novalidate="novalidate">
-                                    <div class="card ">
-                                        <div class="card-header card-header-info card-header-icon">
-                                            <div class="card-icon">
-                                                <i class="material-icons">mail_outline</i>
-                                            </div>
-                                            <h4 class="card-title">Register Form</h4>
-                                        </div>
-                                        <div class="card-body " style="padding-bottom: 0px;">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group bmd-form-group">
-                                                        <label for="email1" class="bmd-label-floating"> Email
-                                                            Address *</label>
-                                                        <input type="email" class="form-control" id="email1"
-                                                               required="true" aria-required="true">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group bmd-form-group">
-                                                        <label for="mobile1" class="bmd-label-floating"> Mobile
-                                                            *</label>
-                                                        <input type="text" class="form-control" name="mobile1"
-                                                               id="mobile1" required="true" aria-required="true">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group bmd-form-group">
-                                                        <label for="name1" class="bmd-label-floating"> Name *</label>
-                                                        <input type="text" class="form-control" id="name1" name="name1"
-                                                               required="true" aria-required="true">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group bmd-form-group">
-                                                        <label for="user_name1" class="bmd-label-floating"> User Name
-                                                            *</label>
-                                                        <input type="text" class="form-control" name="user_name1"
-                                                               id="user_name1" required="true" aria-required="true">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group bmd-form-group">
-                                                        <label for="name" class="bmd-label-floating"> Password *</label>
-                                                        <input type="password" class="form-control" id="password1" name="password1"
-                                                               required="true" aria-required="true">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group bmd-form-group">
-                                                        <label for="user_name" class="bmd-label-floating"> Confirm password
-                                                            *</label>
-                                                        <input type="password" class="form-control" name="cnf_pasword1"
-                                                               id="cnf_pasword1" required="true" aria-required="true">
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <%--<div class="tab-pane" id="link2">--%>
+                            <%--<div class="col-md-8 ml-auto mr-auto">--%>
+                                <%--<form id="mob-user-validation-form" action="#" method="POST" novalidate="novalidate">--%>
+                                    <%--<div class="card ">--%>
+                                        <%--<div class="card-header card-header-info card-header-icon">--%>
+                                            <%--<div class="card-icon">--%>
+                                                <%--<i class="material-icons">mail_outline</i>--%>
+                                            <%--</div>--%>
+                                            <%--<h4 class="card-title">Register Form</h4>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="card-body " style="padding-bottom: 0px;">--%>
+                                            <%--<div class="row">--%>
+                                                <%--<div class="col-md-6">--%>
+                                                    <%--<div class="form-group bmd-form-group">--%>
+                                                        <%--<label for="email1" class="bmd-label-floating"> Email--%>
+                                                            <%--Address *</label>--%>
+                                                        <%--<input type="email" class="form-control" id="email1"--%>
+                                                               <%--required="true" aria-required="true">--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                                <%--<div class="col-md-6">--%>
+                                                    <%--<div class="form-group bmd-form-group">--%>
+                                                        <%--<label for="mobile1" class="bmd-label-floating"> Mobile--%>
+                                                            <%--*</label>--%>
+                                                        <%--<input type="text" class="form-control" name="mobile1"--%>
+                                                               <%--id="mobile1" required="true" aria-required="true">--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="row">--%>
+                                                <%--<div class="col-md-6">--%>
+                                                    <%--<div class="form-group bmd-form-group">--%>
+                                                        <%--<label for="name1" class="bmd-label-floating"> Name *</label>--%>
+                                                        <%--<input type="text" class="form-control" id="name1" name="name1"--%>
+                                                               <%--required="true" aria-required="true">--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                                <%--<div class="col-md-6">--%>
+                                                    <%--<div class="form-group bmd-form-group">--%>
+                                                        <%--<label for="user_name1" class="bmd-label-floating"> User Name--%>
+                                                            <%--*</label>--%>
+                                                        <%--<input type="text" class="form-control" name="user_name1"--%>
+                                                               <%--id="user_name1" required="true" aria-required="true">--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="row">--%>
+                                                <%--<div class="col-md-6">--%>
+                                                    <%--<div class="form-group bmd-form-group">--%>
+                                                        <%--<label for="name" class="bmd-label-floating"> Password *</label>--%>
+                                                        <%--<input type="password" class="form-control" id="password1" name="password1"--%>
+                                                               <%--required="true" aria-required="true">--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                                <%--<div class="col-md-6">--%>
+                                                    <%--<div class="form-group bmd-form-group">--%>
+                                                        <%--<label for="user_name" class="bmd-label-floating"> Confirm password--%>
+                                                            <%--*</label>--%>
+                                                        <%--<input type="password" class="form-control" name="cnf_pasword1"--%>
+                                                               <%--id="cnf_pasword1" required="true" aria-required="true">--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
 
-                                            <div class="category form-category">* Required fields</div>
-                                        </div>
-                                        <div class="card-footer text-right">
-                                            <div class="form-check mr-auto">
+                                            <%--<div class="category form-category">* Required fields</div>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="card-footer text-right">--%>
+                                            <%--<div class="form-check mr-auto">--%>
 
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Register</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="material-datatables">
-                                        <table id="datatables_1"
-                                               class="table table-striped table-no-bordered table-hover"
-                                               cellspacing="0" width="100%" style="width:100%">
-                                            <thead>
-                                            <tr>
-                                                <th style="font-weight: bold;font-size: 13px;display: none">user id</th>
-                                                <th style="font-weight: bold;font-size: 13px">User Name</th>
-                                                <th style="font-weight: bold;font-size: 13px">Name</th>
-                                                <th style="font-weight: bold;font-size: 13px">Mobile</th>
-                                                <th style="font-weight: bold;font-size: 13px">Email</th>
-                                                <th style="font-weight: bold;font-size: 13px">Status</th>
-                                                <th style="font-weight: bold;font-size: 13px">Category</th>
-                                                <th style="font-weight: bold;font-size: 13px">Type</th>
-                                                <th style="font-weight: bold;font-size: 13px">Role</th>
-                                                <th style="font-weight: bold;font-size: 13px">Action</th>
+                                            <%--</div>--%>
+                                            <%--<button type="submit" class="btn btn-info">Register</button>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</form>--%>
+                            <%--</div>--%>
+                            <%--<div class="card">--%>
+                                <%--<div class="card-body">--%>
+                                    <%--<div class="material-datatables">--%>
+                                        <%--<table id="datatables_1"--%>
+                                               <%--class="table table-striped table-no-bordered table-hover"--%>
+                                               <%--cellspacing="0" width="100%" style="width:100%">--%>
+                                            <%--<thead>--%>
+                                            <%--<tr>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px;display: none">user id</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px">User Name</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px">Name</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px">Mobile</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px">Email</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px">Status</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px">Category</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px">Type</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px">Role</th>--%>
+                                                <%--<th style="font-weight: bold;font-size: 13px">Action</th>--%>
 
-                                            </tr>
-                                            </thead>
+                                            <%--</tr>--%>
+                                            <%--</thead>--%>
 
-                                            <tbody>
+                                            <%--<tbody>--%>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                            <%--</tbody>--%>
+                                        <%--</table>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
                     </div>
 
