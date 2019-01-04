@@ -271,7 +271,7 @@
             <li class="nav-item ">
                 <a class="nav-link" href="/building-management">
                     <i class="material-icons">location_city</i>
-                    <p> Building </p>
+                    <p> Geo-Fence </p>
                 </a>
             </li>
 

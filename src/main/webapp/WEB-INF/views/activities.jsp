@@ -88,7 +88,7 @@
                     </div>
 
 
-                    <a class="navbar-brand" href="#pablo">Dashboard</a>
+                    <a class="navbar-brand" href="#pablo">History</a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"

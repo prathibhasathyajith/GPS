@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <title>
-        Building - Managemnt
+        GeoFence - Managemnt
     </title>
 
     <jsp:include page="inc/css_inc.jsp"></jsp:include>
@@ -47,7 +47,7 @@
                     </div>
 
 
-                    <a class="navbar-brand" href="#pablo">Dashboard</a>
+                    <a class="navbar-brand" href="#pablo">Geo-Fence</a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
@@ -78,14 +78,14 @@
                                 <div class="card-icon">
                                     <i class="material-icons">smartphone</i>
                                 </div>
-                                <h4 class="card-title">Add New Building</h4>
+                                <h4 class="card-title">Add New Geo-Fence</h4>
                             </div>
 
                             <div class="card-body " style="padding-bottom: 0px;">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group bmd-form-group">
-                                            <label for="buildingName" class="bmd-label-floating"> Building Name
+                                            <label for="buildingName" class="bmd-label-floating"> Geo-Fence
                                                 *</label>
                                             <input type="text" class="form-control" id="buildingName"
                                                    name="buildingName"
@@ -172,7 +172,7 @@
                                 <div class="card-icon">
                                     <i class="material-icons">assignment</i>
                                 </div>
-                                <h4 class="card-title">Buildings</h4>
+                                <h4 class="card-title">Geo-Fences</h4>
                             </div>
                             <div class="card-body">
                                 <div class="toolbar">
@@ -183,8 +183,8 @@
                                            cellspacing="0" width="100%" style="width:100%">
                                         <thead>
                                         <tr>
-                                            <th style="font-weight: bold;font-size: 14px;">Building Id</th>
-                                            <th style="font-weight: bold;font-size: 14px;">Building Name</th>
+                                            <th style="font-weight: bold;font-size: 14px;">Geo-Fence Id</th>
+                                            <th style="font-weight: bold;font-size: 14px;">Geo-Fence</th>
                                             <th style="font-weight: bold;font-size: 14px;">Location</th>
                                             <th style="font-weight: bold;font-size: 14px;">Latitude</th>
                                             <th style="font-weight: bold;font-size: 14px;">Longitude</th>
