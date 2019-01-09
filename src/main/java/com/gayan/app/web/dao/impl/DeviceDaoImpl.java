@@ -34,6 +34,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static org.hibernate.type.descriptor.java.DateTypeDescriptor.DATE_FORMAT;
+
 /**
  * Created by Gayan Sanjeewa on 9/26/2018.
  */
@@ -470,7 +472,8 @@ public class DeviceDaoImpl implements DeviceDao {
             String dev_id = o.toString();
             System.out.println(dev_id);
             Iterator lastUpdatedDateTime = session.createCriteria(DeviceLocation.class,"locaH")
-                    .add(Restrictions.sqlRestriction("DATE_FORMAT(this_.last_updated_date_time, '%Y-%m-%e %H:%i:%s')>='" + format.format(format.parse(from_date)) + "' and DATE_FORMAT(this_.last_updated_date_time, '%Y-%m-%e %H:%i:%s')<='" + format.format(format.parse(to_date)) + "'"))
+//                    .add(Restrictions.between("lastUpdatedDateTime",format.format(format.parse(from_date)),format.format(format.parse(to_date))))
+                   .add(Restrictions.sqlRestriction("this_.last_updated_date_time >= '" + from_date + "' and this_.last_updated_date_time <= '" + to_date + "'"))
                     .add(Restrictions.eq("deviceId", new Device(Integer.parseInt(dev_id))))
                     .setFirstResult(Integer.parseInt(start))
                     .setMaxResults(Integer.parseInt(length))
@@ -525,7 +528,7 @@ public class DeviceDaoImpl implements DeviceDao {
             System.out.println(dev_id);
             Object deviceId = session.createCriteria(DeviceLocation.class)
                     .setProjection(Projections.rowCount())
-                    .add(Restrictions.sqlRestriction("DATE_FORMAT(this_.last_updated_date_time, '%Y-%m-%e %H:%i:%s')>='" + format.format(format.parse(from_date)) + "' and DATE_FORMAT(this_.last_updated_date_time, '%Y-%m-%e %H:%i:%s')<='" + format.format(format.parse(to_date)) + "'"))
+                    .add(Restrictions.sqlRestriction("this_.last_updated_date_time >= '" + from_date + "' and this_.last_updated_date_time <= '" + to_date + "'"))
                     .add(Restrictions.eq("deviceId", new Device(Integer.parseInt(dev_id))))
                     .uniqueResult();
 
@@ -801,12 +804,12 @@ public class DeviceDaoImpl implements DeviceDao {
         countBean.setRangeMin(range);
 
         String hql = "from DeviceLocation as d where d.deviceId.deviceIdUq =:did " +
-                "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <:tdate " +
+                "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <=:tdate " +
                 "order by d.lastUpdatedDateTime asc";
         Query query = session.createQuery(hql).setString("did", device_id).setString("fdate",from_date).setString("tdate",to_date);
 
         String hql2 = "from DeviceLocation as d where d.deviceId.deviceIdUq =:did " +
-                "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <:tdate " +
+                "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <=:tdate " +
                 "group by ROUND(UNIX_TIMESTAMP(d.lastUpdatedDateTime)/("+range_min+"*60))";
         Query query2 = session.createQuery(hql2).setString("did", device_id).setString("fdate",from_date).setString("tdate",to_date);
 

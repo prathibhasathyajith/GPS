@@ -365,10 +365,11 @@
             var from_date = $("#from_date").val();
             var to_date = $("#to_date").val();
 
-            getAttemptCount();
+
             if (d_id != 0) {
                 table.ajax.url('/app/web/device/loc-history?from_date=' + from_date + '&to_date=' + to_date + '&device_id=' + d_id).load();
             }
+            getAttemptCount();
         });
 
         function initMap() {
