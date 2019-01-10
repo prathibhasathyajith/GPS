@@ -8,6 +8,7 @@ public class CountBean {
     private String rangeMin;
     private String pointCount;
     private ArrayList<String> mapData;
+    private ArrayList<LatLngBean> latLon;
 
 
     public String getInCount() {
@@ -49,5 +50,14 @@ public class CountBean {
 
     public void setRangeMin(String rangeMin) {
         this.rangeMin = rangeMin;
+    }
+
+
+    public ArrayList<LatLngBean> getLatLon() {
+        return latLon;
+    }
+
+    public void setLatLon(ArrayList<LatLngBean> latLon) {
+        this.latLon = latLon;
     }
 }

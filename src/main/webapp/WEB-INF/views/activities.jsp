@@ -263,6 +263,14 @@
             defer></script>
     <script>
         var table_his;
+        var geocoder;
+        var infowindow;
+        var directionsService;
+        var directionsDisplay;
+        var map;
+        var mr_ar2 =[];
+
+
         $(document).ready(function () {
             $('.datetimepicker').datetimepicker({
                 format: 'YYYY-MM-DD HH:mm:ss',
@@ -322,8 +330,11 @@
                     console.log(data.mapData);
                     $('#pointCount').text(data.pointCount);
                     $('#rangeMin').text(data.rangeMin);
-                    geocodeLatLng(geocoder, infowindow, directionsService, directionsDisplay, data.mapData);
+                    // geocodeLatLng(geocoder, infowindow, directionsService, directionsDisplay, data.mapData);
                     // mapData = [];
+
+                    markMap(data.latLon,map);
+
                 },
                 error: function (jqXhr, textStatus, errorThrown) {
                     console.log(errorThrown);
@@ -331,10 +342,7 @@
             });
         }
 
-        var geocoder;
-        var infowindow;
-        var directionsService;
-        var directionsDisplay;
+
 
 
         var data_address = [];
@@ -378,7 +386,7 @@
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
 
-            var map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 10,
                 center: {
                     lat: 6.93,
@@ -427,6 +435,42 @@
                 }, 100);
             }
 
+        }
+
+
+        function markMap(data,map) {
+
+            var prev_infowindow;
+
+            for (var i=0; i<mr_ar2.length; i++) {
+                mr_ar2[i].setMap(null);
+            }
+
+            // Create markers.
+            data.forEach(function (details) {
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: '<div>' +
+                    '<h5 style="color: #0c83e2;padding: 1px"><u>Details</u></h5>'+
+                    '<h6 style="text-transform: none;color: Black;padding: 1px"><span style="color: gray;">Device Name</span>  - ' + details.name + '</h6>' +
+                    '<h6 style="text-transform: none;color: Black;padding: 1px"><span style="color: gray;">Address</span>  - ' + details.address + '</h6>' +
+                    '<h6 style="text-transform: none;color: Black;padding: 1px"><span style="color: gray;">Date & Time</span> - ' + details.dateTime + '</h6>' +
+                    '</div>'
+                });
+
+                var marker = new google.maps.Marker({
+                    position: {"lat": Number(details.lat), "lng": Number(details.lng)},
+                    map: map
+                });
+                marker.addListener('click', function () {
+                    if (prev_infowindow != null) {
+                        prev_infowindow.close();
+                    }
+                    infowindow.open(map, marker);
+                    prev_infowindow = infowindow;
+                });
+                mr_ar2.push(marker);
+            });
         }
 
 

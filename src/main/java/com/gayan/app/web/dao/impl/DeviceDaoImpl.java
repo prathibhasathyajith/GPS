@@ -775,6 +775,7 @@ public class DeviceDaoImpl implements DeviceDao {
         Session session = sessionFactory.getCurrentSession();
 
         ArrayList<String> gmapdata = new ArrayList<String>();
+        ArrayList<LatLngBean> latLong = new ArrayList<LatLngBean>();
 
         String st = "";
         String count = "0";
@@ -838,7 +839,18 @@ public class DeviceDaoImpl implements DeviceDao {
         if (query2.list().size() > 0) {
             devices_formated = query2.list();
             for (int j = 0; j < query2.list().size(); j++) {
-                gmapdata.add(getAddressByGpsCoordinates(devices_formated.get(j).getLatitude(),devices_formated.get(j).getLongitude()));
+                LatLngBean bean  = new LatLngBean();
+                bean.setLat(devices_formated.get(j).getLatitude());
+                bean.setLng(devices_formated.get(j).getLongitude());
+                bean.setName(devices_formated.get(j).getDeviceId().getDeviceName());
+                bean.setDateTime(format.format(devices_formated.get(j).getLastUpdatedDateTime()));
+
+                String address = this.getAddressByGpsCoordinates(devices_formated.get(j).getLatitude(),devices_formated.get(j).getLongitude());
+                bean.setAddress(address);
+
+                latLong.add(bean);
+
+                gmapdata.add(address);
             }
         }
 
@@ -849,6 +861,7 @@ public class DeviceDaoImpl implements DeviceDao {
         countBean.setInCount(Integer.toString(countAttemptsIn));
         countBean.setOutCount(Integer.toString(countAttemptsOut));
         countBean.setMapData(gmapdata);
+        countBean.setLatLon(latLong);
 
         return countBean;
     }

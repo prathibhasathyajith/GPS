@@ -48,12 +48,12 @@ public class MvcWebConfig extends WebMvcConfigurerAdapter {
         properties.put("connection.is-connection-validation-required", "true");
 
         properties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-//        properties.put("hibernate.connection.url", "jdbc:mysql://35.237.13.27:3306/geoloc_db");
-        properties.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/geoloc_db");
+        properties.put("hibernate.connection.url", "jdbc:mysql://35.237.13.27:3306/geoloc_db");
+//        properties.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/geoloc_db");
         properties.put("hibernate.connection.username", "root");
-//        properties.put("hibernate.connection.password", "dialog@ets");
+        properties.put("hibernate.connection.password", "dialog@ets");
 //        properties.put("hibernate.connection.password", "");
-        properties.put("hibernate.connection.password", "password");
+//        properties.put("hibernate.connection.password", "password");
 
 
         return properties;

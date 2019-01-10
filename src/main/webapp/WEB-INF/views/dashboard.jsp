@@ -131,6 +131,7 @@
     var map1;
     var mr_ar =[];
     var mr_ar2 =[];
+    var mr_circle =[];
     var user = {"lat": 6.9360582, "lng": 79.9845375}; //use this as user location
     function initMap() {
 
@@ -193,6 +194,10 @@
                     mr_ar[i].setMap(null);
                 }
 
+                for (var i=0; i<mr_circle.length; i++) {
+                    mr_circle[i].setMap(null);
+                }
+
                 list.forEach(function (details) {
                     var infowindow = new google.maps.InfoWindow({
                         content: '<div>' +
@@ -233,6 +238,7 @@
                         prev_infowindow = infowindow;
                     });
                     mr_ar.push(marker);
+                    mr_circle.push(areaCircle);
                 });
 
 
