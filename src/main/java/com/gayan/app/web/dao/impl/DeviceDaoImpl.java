@@ -786,17 +786,18 @@ public class DeviceDaoImpl implements DeviceDao {
 
         List<DeviceLocation> devices = new ArrayList<DeviceLocation>();
 
-        int diffInDays = (int)( (format.parse(to_date).getTime() - format.parse(from_date).getTime()) / (1000 * 60 * 60 * 24) );
+//        int diffInDays = (int)( (format.parse(to_date).getTime() - format.parse(from_date).getTime()) / (1000 * 60 * 60 * 24) );
+//
+//        System.out.println("date diff -- " + diffInDays);
+//
+//        if(diffInDays == 0){
+//            diffInDays = 1;
+//        }
+//
+//        System.out.println("date diff -- " + diffInDays);
 
-        System.out.println("date diff -- " + diffInDays);
-
-        if(diffInDays == 0){
-            diffInDays = 1;
-        }
-
-        System.out.println("date diff -- " + diffInDays);
-
-        long range_min = (diffInDays*24*60)/20;
+//        long range_min = (diffInDays*24*60)/20;
+        long range_min = 30;
 
         System.out.println("date diff -- " + range_min);
 
@@ -809,10 +810,15 @@ public class DeviceDaoImpl implements DeviceDao {
                 "order by d.lastUpdatedDateTime asc";
         Query query = session.createQuery(hql).setString("did", device_id).setString("fdate",from_date).setString("tdate",to_date);
 
+//        String hql2 = "from DeviceLocation as d where d.deviceId.deviceIdUq =:did " +
+//                "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <=:tdate " +
+//                "group by ROUND(UNIX_TIMESTAMP(d.lastUpdatedDateTime)/("+range_min+"*60))";
+//        Query query2 = session.createQuery(hql2).setString("did", device_id).setString("fdate",from_date).setString("tdate",to_date);
+
         String hql2 = "from DeviceLocation as d where d.deviceId.deviceIdUq =:did " +
-                "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <=:tdate " +
-                "group by ROUND(UNIX_TIMESTAMP(d.lastUpdatedDateTime)/("+range_min+"*60))";
+                "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <=:tdate ";
         Query query2 = session.createQuery(hql2).setString("did", device_id).setString("fdate",from_date).setString("tdate",to_date);
+
 
         System.out.println(query2);
 
@@ -836,9 +842,17 @@ public class DeviceDaoImpl implements DeviceDao {
 
         List<DeviceLocation> devices_formated = new ArrayList<DeviceLocation>();
 
+        int rec = 2;
+
         if (query2.list().size() > 0) {
             devices_formated = query2.list();
-            for (int j = 0; j < query2.list().size(); j++) {
+
+            if(query2.list().size() > 50 ) {
+                rec = query2.list().size() / 50;
+            }else{
+                rec = 1;
+            }
+            for (int j = 0; j < query2.list().size(); j=rec+j) {
                 LatLngBean bean  = new LatLngBean();
                 bean.setLat(devices_formated.get(j).getLatitude());
                 bean.setLng(devices_formated.get(j).getLongitude());
@@ -854,7 +868,7 @@ public class DeviceDaoImpl implements DeviceDao {
             }
         }
 
-        countBean.setPointCount(query2.list().size()+"");
+        countBean.setPointCount(query2.list().size()/rec+"");
 
         System.out.println(gmapdata);
 

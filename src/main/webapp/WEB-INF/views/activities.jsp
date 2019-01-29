@@ -235,7 +235,7 @@
                                     </div>
                                     <h4 class="card-title">Employee(Device) Route</h4>
                                     <span style="color:black">Number of Points : </span><label id="pointCount">0</label>
-                                    <span style="color:black">Data Duration : </span><label id="rangeMin">0 </label><span style="color:black">min</span>
+                                    <%--<span style="color:black">Data Duration : </span><label id="rangeMin">0 </label><span style="color:black">min</span>--%>
                                 </div>
                                 <div class="card-body">
                                     <div class="tab-pane active show" id="about">
