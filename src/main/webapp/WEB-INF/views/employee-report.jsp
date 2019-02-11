@@ -21,6 +21,9 @@
         {
             margin: 5px;
         }
+        div.dataTables_processing {
+            z-index: 1;
+        }
     </style>
 </head>
 <jsp:include page="inc/css_inc.jsp"></jsp:include>
@@ -230,7 +233,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Done!</button>
+                    <button type="button" onclick="clearTable()" class="btn btn-info btn-round" data-dismiss="modal">Done!</button>
                 </div>
             </div>
         </div>
@@ -362,6 +365,9 @@ var m_url = "?device_id=false&name=false&location=false&auth_admin=false";
     function getName(device_name) {
         $('#myModalLabel2').text(device_name);
 
+    }
+    function clearTable(){
+        table_his.ajax.url('/app/web/device-history/test').load();
     }
 
     function getCheckBoxvalue(id) {

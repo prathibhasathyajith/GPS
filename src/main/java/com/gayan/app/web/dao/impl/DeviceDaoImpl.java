@@ -25,6 +25,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -113,7 +114,7 @@ public class DeviceDaoImpl implements DeviceDao {
                     device.getOwnerBuildingId().getBuildingName(),
                     device.getLastUpdatedDateTime() == null ? "--" : format.format(device.getLastUpdatedDateTime()),
                     device.getDevice_last_lat() == null ? "--" : "[lat : " + device.getDevice_last_lat() + " - lng : " + device.getDevice_last_lan() + "]",
-                    device.getDevice_last_lat() == null ? "--" : getAddressByGpsCoordinates(device.getDevice_last_lat(),device.getDevice_last_lan()),
+                    device.getDevice_last_lat() == null ? "--" : getAddressByGpsCoordinates(device.getDevice_last_lat(), device.getDevice_last_lan()),
                     device.getRegUserId().getUserName(),
                     device.getDevice_last_lat() == null ? "--" : device.getBattryLevel() + "",
                     status_formatter,
@@ -185,12 +186,23 @@ public class DeviceDaoImpl implements DeviceDao {
 
         List<DeviceLocation> devices = new ArrayList<DeviceLocation>();
 
-        String hql = "from DeviceLocation as d where d.deviceId.deviceIdUq =:did  order by d.lastUpdatedDateTime asc";
-        Query query = session.createQuery(hql).setString("did", device_id);
+        String hql = "from DeviceLocation as d where d.deviceId.deviceIdUq =:did  order by d.lastUpdatedDateTime asc ";
+        Query query = session.createQuery(hql).setString("did", device_id).setMaxResults(300);
+
+
 
 
         if (query.list().size() > 0) {
             boolean flag = true;
+            /**
+             * SELECT * FROM geoloc_db.device_location where device_id = '151'
+             * group by FLOOR(UNIX_TIMESTAMP(last_updated_date_time)/(10 * 60)),status_id
+             * order by last_updated_date_time asc;
+             *
+             * SELECT * FROM geoloc_db.device_location where device_id = '151'
+             *
+             * order by last_updated_date_time asc;
+             */
 
             devices = query.list();
 
@@ -471,9 +483,9 @@ public class DeviceDaoImpl implements DeviceDao {
         if (o != null) {
             String dev_id = o.toString();
             System.out.println(dev_id);
-            Iterator lastUpdatedDateTime = session.createCriteria(DeviceLocation.class,"locaH")
+            Iterator lastUpdatedDateTime = session.createCriteria(DeviceLocation.class, "locaH")
 //                    .add(Restrictions.between("lastUpdatedDateTime",format.format(format.parse(from_date)),format.format(format.parse(to_date))))
-                   .add(Restrictions.sqlRestriction("this_.last_updated_date_time >= '" + from_date + "' and this_.last_updated_date_time <= '" + to_date + "'"))
+                    .add(Restrictions.sqlRestriction("this_.last_updated_date_time >= '" + from_date + "' and this_.last_updated_date_time <= '" + to_date + "'"))
                     .add(Restrictions.eq("deviceId", new Device(Integer.parseInt(dev_id))))
                     .setFirstResult(Integer.parseInt(start))
                     .setMaxResults(Integer.parseInt(length))
@@ -495,7 +507,7 @@ public class DeviceDaoImpl implements DeviceDao {
 //                        deviceId.getDeviceName(),
                         history.getLatitude(),
                         history.getLongitude(),
-                        getAddressByGpsCoordinates(history.getLatitude(),history.getLongitude()),
+                        getAddressByGpsCoordinates(history.getLatitude(), history.getLongitude()),
 //                        format.format(deviceId.getLast_inside_time()),
 //                        format.format(deviceId.getLast_outside_time()),
                         format.format(history.getLastUpdatedDateTime()),
@@ -738,7 +750,6 @@ public class DeviceDaoImpl implements DeviceDao {
             Date date = new Date();
 
 
-
             Users user = (Users) session.get(Users.class, Integer.parseInt(deviceAddBean.getUser()));
             device.setRegUserId(user);
 
@@ -765,7 +776,6 @@ public class DeviceDaoImpl implements DeviceDao {
             bean.setCode(HttpStatus.NOT_FOUND.value());
             bean.setMessage("Invalid details..!!");
         }
-
 
 
         return bean;
@@ -808,7 +818,7 @@ public class DeviceDaoImpl implements DeviceDao {
         String hql = "from DeviceLocation as d where d.deviceId.deviceIdUq =:did " +
                 "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <=:tdate " +
                 "order by d.lastUpdatedDateTime asc";
-        Query query = session.createQuery(hql).setString("did", device_id).setString("fdate",from_date).setString("tdate",to_date);
+        Query query = session.createQuery(hql).setString("did", device_id).setString("fdate", from_date).setString("tdate", to_date);
 
 //        String hql2 = "from DeviceLocation as d where d.deviceId.deviceIdUq =:did " +
 //                "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <=:tdate " +
@@ -817,7 +827,7 @@ public class DeviceDaoImpl implements DeviceDao {
 
         String hql2 = "from DeviceLocation as d where d.deviceId.deviceIdUq =:did " +
                 "and d.lastUpdatedDateTime >=:fdate and d.lastUpdatedDateTime <=:tdate ";
-        Query query2 = session.createQuery(hql2).setString("did", device_id).setString("fdate",from_date).setString("tdate",to_date);
+        Query query2 = session.createQuery(hql2).setString("did", device_id).setString("fdate", from_date).setString("tdate", to_date);
 
 
         System.out.println(query2);
@@ -827,17 +837,16 @@ public class DeviceDaoImpl implements DeviceDao {
 
             devices = query.list();
 
-            for (int i = 0; i < query.list().size()-1; i++) {
+            for (int i = 0; i < query.list().size() - 1; i++) {
 
-                if(devices.get(i).getStatusId().getStatusId() == 8 && devices.get(i+1).getStatusId().getStatusId() == 7){
+                if (devices.get(i).getStatusId().getStatusId() == 8 && devices.get(i + 1).getStatusId().getStatusId() == 7) {
                     countAttemptsIn++;
                 }
-                if(devices.get(i).getStatusId().getStatusId() == 7 && devices.get(i+1).getStatusId().getStatusId() == 8){
+                if (devices.get(i).getStatusId().getStatusId() == 7 && devices.get(i + 1).getStatusId().getStatusId() == 8) {
                     countAttemptsOut++;
                 }
             }
         }
-
 
 
         List<DeviceLocation> devices_formated = new ArrayList<DeviceLocation>();
@@ -847,19 +856,19 @@ public class DeviceDaoImpl implements DeviceDao {
         if (query2.list().size() > 0) {
             devices_formated = query2.list();
 
-            if(query2.list().size() > 50 ) {
+            if (query2.list().size() > 50) {
                 rec = query2.list().size() / 50;
-            }else{
+            } else {
                 rec = 1;
             }
-            for (int j = 0; j < query2.list().size(); j=rec+j) {
-                LatLngBean bean  = new LatLngBean();
+            for (int j = 0; j < query2.list().size(); j = rec + j) {
+                LatLngBean bean = new LatLngBean();
                 bean.setLat(devices_formated.get(j).getLatitude());
                 bean.setLng(devices_formated.get(j).getLongitude());
                 bean.setName(devices_formated.get(j).getDeviceId().getDeviceName());
                 bean.setDateTime(format.format(devices_formated.get(j).getLastUpdatedDateTime()));
 
-                String address = this.getAddressByGpsCoordinates(devices_formated.get(j).getLatitude(),devices_formated.get(j).getLongitude());
+                String address = this.getAddressByGpsCoordinates(devices_formated.get(j).getLatitude(), devices_formated.get(j).getLongitude());
                 bean.setAddress(address);
 
                 latLong.add(bean);
@@ -868,7 +877,7 @@ public class DeviceDaoImpl implements DeviceDao {
             }
         }
 
-        countBean.setPointCount(query2.list().size()/rec+"");
+        countBean.setPointCount(query2.list().size() / rec + "");
 
         System.out.println(gmapdata);
 
